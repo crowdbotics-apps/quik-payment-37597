@@ -1074,6 +1074,9 @@
 "@modules/fingerprint-authentication@file:./modules/fingerprint-authentication":
   version "1.0.0"
 
+"@modules/fingerprint-authentication@file:./modules/fingerprint-authentication/":
+  version "1.0.0"
+
 "@modules/login@file:./modules/login":
   version "1.0.0"
   dependencies:
