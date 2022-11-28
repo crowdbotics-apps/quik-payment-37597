@@ -64,6 +64,7 @@ This section will show any installed modules you add from the Storyboard Modules
 - [payments]()
 - [react-native-fingerprint-authentication](modules/fingerprint-authentication)
 - [django-two-factor-authentication](backend/modules)
+- [react-native-login](modules/login)
 
 # Getting started: Frontend
 
