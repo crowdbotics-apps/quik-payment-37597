@@ -63,6 +63,7 @@ This section will show any installed modules you add from the Storyboard Modules
 - [terms-and-conditions]()
 - [payments]()
 - [react-native-fingerprint-authentication](modules/fingerprint-authentication)
+- [django-two-factor-authentication](backend/modules)
 
 # Getting started: Frontend
 
