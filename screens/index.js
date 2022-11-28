@@ -1,130 +1,99 @@
-import * as React from "react";
-import { Text, View, TextInput, TouchableHighlight, StyleSheet } from "react-native";
+import React from "react";
+import { Text, StyleSheet, View, Image, Pressable } from "react-native";
 
-const pressed = () => {
-  console.log("pressed");
-};
-
-const Token = () => {
+const UploadMediaScreen = (params) => {
   return (
     <View style={styles.container}>
-      <View style={styles.topHead}>
-        <Text style={styles.mainHeading}>Token</Text>
-      </View>
-    <View style={styles.verification}>
-        <Text style={styles.verificationText}>Verification</Text>
-        <View style={styles.resendcodedetails}>
-        <Text style={styles.resendcodeText}>4 digits PIN has been sent to your mail. </Text>
-        <Text style={styles.resendcodeText}>Enter the code below to continue. <Text style={styles.boldText}>Resend code?</Text> </Text>
-      </View>
-      <View style={styles.pincodeArea}>
-        <View style={styles.tokenFields}>
-          <TextInput></TextInput>
+      <View style={styles.menu}>
+        <View style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Take photo or video</Text>
+          <Image source={require("./assets/cameraIcon.png")} />
         </View>
-        <View style={styles.tokenFields}>
-          <TextInput></TextInput>
+        <View style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Photo Library</Text>
+          <Image source={require("./assets/libraryIcon.png")} />
         </View>
-        <View style={styles.tokenFields}>
-          <TextInput></TextInput>
-        </View>
-        <View style={styles.tokenFields}>
-          <TextInput></TextInput>
+        <View style={styles.menuItem}>
+          <Text style={styles.menuItemText}>Browse</Text>
+          <Image source={require("./assets/menuIcon.png")} />
         </View>
       </View>
-    </View>
-
-    <View style={styles.submitBtn}>
-        <Button onPress={pressed} style={styles.submitButton}>Submit</Button>
-    </View>
+      <Button buttonText="Cancel" outline={true} />
     </View>
   );
 };
+
 const styles = StyleSheet.create({
-  topHead: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    height: "20%"
-  },
-  mainHeading: {
-    fontSize: 30,
-    fontWeight: "bold"
-  },
   container: {
-    padding: 20,
-    height: "100%",
     flex: 1,
-    justifyContent: "space-between",
-    backgroundColor: "#FFF"
+    backgroundColor: "#fff",
+    padding: 20,
+    justifyContent: "flex-end"
   },
-  verification: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "50%"
-  },
-  verificationText: {
-    fontSize: 22
-  },
-  resendcodedetails: {
-    paddingTop: 10
-  },
-  resendcodeText: {
-    color: "rgba(0,0,0,0.5)"
-  },
-  boldText: {
-    fontWeight: "bold",
-    color: "#231F20"
-  },
-  pincodeArea: {
-    display: "flex",
+  menuItem: {
     flexDirection: "row",
-    justifyContent: "center",
     alignItems: "center",
-    paddingTop: 25
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
+    borderColor: "#ccc"
   },
-  tokenFields: {
-    width: "16%",
-    margin: 5,
-    borderColor: "#000000",
-    borderWidth: 1,
-    borderRadius: 10
-  },
-  submitBtn: {
-    height: "30%",
-    paddingLeft: 20,
-    paddingRight: 20
+  menuItemText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#000",
+    textAlign: "left"
   }
 });
+export default UploadMediaScreen;
 
-export default Token;
-
-const Button = (props) => {
+const Button = (params) => {
+  const btnStyle = {
+    backgroundColor: params.outline ? "#fff" : "#000",
+    borderColor: params.outline ? "#000" : "#fff",
+    borderWidth: 1
+  };
+  const btnText = {
+    color: params.outline ? "#000" : "#fff"
+  };
   return (
-    <TouchableHighlight onPress={props.onPress} underlayColor='#DDDDDD'>
-      <View style={[btnStyles.button, {
-        backgroundColor: props.backgroundColor ? props.backgroundColor : "#000000",
-        height: props.height ? props.height : 49,
-        borderWidth: props.borderWidth ? props.borderWidth : 0,
-        borderColor: props.borderColor ? props.borderColor : "#000000"
-      }]}>
-        <Text style={[btnStyles.text, { color: props.color ? props.color : "#ffffff" }]}>{props.children}</Text>
-      </View>
-    </TouchableHighlight>
+    <View style={buttonStyles.btnContainer}>
+      <Pressable style={[buttonStyles.btn, btnStyle]} onPress={params.onPress}>
+        <Text style={[buttonStyles.btnText, btnText]}>{params.buttonText}</Text>
+        <View style={styles.childrenContainer}>{params.children}</View>
+      </Pressable>
+    </View>
   );
 };
 
-const btnStyles = StyleSheet.create({
-  button: {
-    display: "flex",
+const buttonStyles = StyleSheet.create({
+  btnContainer: {
+    paddingTop: 10,
+    paddingHorizontal: 20,
+    justifyContent: "center",
+    marginTop: 20
+  },
+  btn: {
+    backgroundColor: "black",
+    height: 50,
+    width: "100%",
+    padding: 10,
+    paddingHorizontal: 25,
+    borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 10
+    shadowColor: "rgba(0, 0, 0, 0.2)",
+    elevation: 10,
+    flexDirection: "row"
   },
-  text: {
-    fontWeight: "bold",
-    fontSize: 15
+  btnText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold"
+  },
+  childrenContainer: {
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
